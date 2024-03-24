@@ -35,7 +35,7 @@ const test_data = [
                     document.createElement('span').innerText = "Vestibulum fringilla ante facilisis urna aliquam, eget pharetra sapien commodo.",
                     document.createElement('span').innerText = "Morbi nec porttitor turpis, sit amet dapibus arcu."
                 ],
-                "expanded": true,
+                "expanded": false,
                 "children": [
                     {
                         "uid": "e5ba7176-45dd-43cc-a239-0b4455d9a39e",

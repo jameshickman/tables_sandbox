@@ -41,7 +41,12 @@ class TaskTable {
                 el_control_cell.appendChild(el_name);
                 if (row_data.hasOwnProperty("children")) {
                     const el_chevron = document.createElement("i");
-                    el_chevron.classList.add("ri-arrow-down-wide-fill");
+                    if (row_data.expanded) {
+                        el_chevron.classList.add("ri-arrow-down-wide-fill");
+                    }
+                    else {
+                        el_chevron.classList.add("ri-arrow-right-wide-fill");
+                    }
                     el_chevron.classList.add("__bind_icon");
                     el_chevron.addEventListener('click', this.#chevron_clicked.bind(this));
                     el_control_cell.appendChild(el_chevron);
