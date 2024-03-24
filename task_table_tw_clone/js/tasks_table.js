@@ -1,4 +1,5 @@
 Array.prototype.move = function(from,to){
+    // https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     this.splice(to,0,this.splice(from,1)[0]);
     return this;
 };
