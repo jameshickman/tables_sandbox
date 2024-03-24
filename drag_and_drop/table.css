@@ -1,0 +1,63 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 600px;
+    height: 200px;
+    overflow: scroll;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.container table {
+    z-index: 3;
+}
+
+td, th {
+    white-space: nowrap;
+    vertical-align: top;
+    text-align: left;
+    min-width:150px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(226 232 240);
+}
+
+table {
+    table-layout: fixed; 
+    border-collapse: collapse;
+    background: white;
+}
+
+.table-fix-col {
+    position: sticky;
+    background: white;
+    left:0;
+    min-width:150px;
+    cursor: grab;
+    font-weight: bold;
+}
+
+.table-fix-hdr {
+    position: sticky;
+    background: white;
+    width: 200px;
+    top: 0px;
+}
+
+.corner-placeholder {
+    position: absolute;
+    background-color: white;
+    left: 0px;
+    top: 0px;
+    width: 148px;
+    height: 28px;
+    z-index: 4;
+    box-sizing: border-box;
+}

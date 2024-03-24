@@ -1,0 +1,39 @@
+.task-list {
+    white-space: nowrap;
+}
+
+.task-list td {
+    padding: 3px;
+}
+
+.task-list__row-controls-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 4px 4px 4px 32px;
+    background-color: white;
+    visibility: collapse;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+.task-list__row-controls-container i {
+    cursor: pointer;
+    font-size: 115%;
+    z-index: 99999;
+}
+
+.task-list__control-column-cell {
+    position: relative;
+}
+
+.__bind_icon {
+    cursor: pointer;
+}
+
+.task-list__tool-button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+}

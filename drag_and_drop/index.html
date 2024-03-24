@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="table.css" />
+        <script src="table.js"></script>
+    </head>
+    <body>
+        <h1>Demonstration of table with sticky header and left-most column, and drag-and-drop row rearranging</h1>
+        <div class="wrapper">
+            <div class="container">
+                <table id="advanced-table">
+                    <thead>
+                        <th class="table-fix-col"> </th>
+                        <th class="table-fix-hdr">Col 2</th>
+                        <th class="table-fix-hdr">Col 3</th>
+                        <th class="table-fix-hdr">Col 4</th>
+                        <th class="table-fix-hdr">Col 5</th>
+                        <th class="table-fix-hdr">Col 6</th>
+                        <th class="table-fix-hdr">Col 7</th>
+                        <th class="table-fix-hdr">Col 8</th>
+                    </thead>
+                    <tbody>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 1</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 2</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 3</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 4</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 5</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 6</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 7</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 8</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 9</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 10</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 11</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                        <tr draggable="true">
+                            <td class="table-fix-col">Row identifier 12</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                            <td>Foo Bar Baz</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="corner-placeholder"></div>
+        </div>
+        
+        <script>
+            setup_table(
+                document.getElementById('advanced-table'),
+                function(el_moved) {
+                    console.log(el_moved)
+                }
+            );
+        </script>
+    </body>
+</html>

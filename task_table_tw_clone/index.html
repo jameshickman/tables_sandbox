@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/tasks_table.css" />
+        <link rel="stylesheet" href="css/fonts/remixicon.css" />
+        <script src="js/tasks_table.js"></script>
+        <script src="js/test_data.js"></script>
+    </head>
+    <body>
+        <table id="task-list" class="task-list">
+            <thead>
+                <th></th>
+                <th>Data 1</th>
+                <th>Data 2</th>
+                <th>Data 3</th>
+                <th>Data 4</th>
+                <th>Data 5</th>
+                <th>Data 6</th>
+            </thead>
+            <tbody></tbody>
+            <template>
+                <div class="task-list__row-controls-container">
+                    <i class="ri-pencil-line __bind_edit" title="Edit this item"></i>
+                    <i class="ri-arrow-up-s-line __bind_move_up" title="Move item up"></i>
+                    <i class="ri-arrow-down-s-line __bind_move_down" title="Move item down"></i>
+                    <i class="ri-add-large-fill __bind_add_row" title="Create a new item below"></i>
+                    <i class="ri-play-list-add-line __bind_child_row" title="Create a new item as a child of this item"></i>
+                    <i class="ri-delete-bin-5-line __bind_delte" title="Delete this item"></i>
+                </div>
+            </template>
+        </table>
+        <script>
+            const tbl = new TaskTable(
+                document.getElementById("task-list")
+            ).set_data(test_data);
+        </script>
+    </body>
+</html>
