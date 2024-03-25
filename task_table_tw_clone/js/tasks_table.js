@@ -42,16 +42,17 @@ class TaskTable {
                 el_name.innerText = row_data.name;
                 const el_tools = this.#el_control_template.cloneNode(true);
                 // Bind tool actions
-                //el_tools.querySelector(".__bind_move_up").addEventListener('click', this.#move_up_clicked.bind(this));
+                el_tools.querySelector(".__bind_move_up").addEventListener('click', this.#move_up_clicked.bind(this));
+                el_tools.querySelector(".__bind_move_down").addEventListener('click', this.#move_down_clicked.bind(this));
                 el_control_cell.appendChild(el_tools);
                 el_control_cell.appendChild(el_name);
                 if (row_data.hasOwnProperty("children")) {
                     const el_chevron = document.createElement("i");
                     if (row_data.expanded) {
-                        el_chevron.classList.add("ri-arrow-down-wide-fill");
+                        el_chevron.classList.add("ri-arrow-down-wide-line");
                     }
                     else {
-                        el_chevron.classList.add("ri-arrow-right-wide-fill");
+                        el_chevron.classList.add("ri-arrow-right-wide-line");
                     }
                     el_chevron.classList.add("__bind_icon");
                     el_chevron.addEventListener('click', this.#chevron_clicked.bind(this));
@@ -85,22 +86,26 @@ class TaskTable {
         }
         
         while(el_tbody.children.length > 0) {
-            el_tbody.removeChild(el.lastChild);
+            el_tbody.removeChild(el_tbody.lastChild);
         }
         buld_rows(this.#data, 0);
     }
 
     #chevron_clicked(e) {
+        const row_uid = e.currentTarget.parentElement.parentElement.dataset.uid;
+        const found_in = this.#find_by_uid(row_uid);
         const el_cell = e.currentTarget.parentElement;
         const el_icon = el_cell.querySelector(".__bind_icon");
         el_icon.classList.remove("ri-arrow-down-wide-line");
         el_icon.classList.remove("ri-arrow-right-wide-line");
         if (el_cell.dataset.expanded === 'true') {
             el_cell.dataset.expanded = false;
+            found_in[0][found_in[1]].expanded = false;
             el_icon.classList.add("ri-arrow-right-wide-line");
         }
         else {
             el_cell.dataset.expanded = true;
+            found_in[0][found_in[1]].expanded = true;
             el_icon.classList.add("ri-arrow-down-wide-line");
         }
         this.#update_expanded_sections();
@@ -151,58 +156,39 @@ class TaskTable {
         }
     }
 
-
-/*
     #move_up_clicked(e) {
-        const walk_back = (insert_point) => {
-            while (insert_point >= 0 && parseInt(els_rows[insert_point].dataset.depth) > depth) {
-                insert_point--;
-            }
-            return insert_point;
-        }
-        const move_block_of_rows = (els_rows, els_to_move, to_index) => {
-            els_rows[to_index].before(els_to_move[0]);
-            for (let i = 1; i < els_to_move.length; i++) {
-                els_to_move[0].after(els_to_move[i]);
-                to_index++;
-            }
-        }
-        this.#hide_tool_popups();
-        const els_rows = this.#el_table.querySelectorAll("tbody tr");
-        const el_row = e.currentTarget.parentElement.parentElement.parentElement;
-        const depth = parseInt(el_row.dataset.depth);
-        const els_rows_block = this.#find_rows_block(el_row);
-        let row_index = this.#find_my_index(el_row);
-        if (row_index === 0) return;
-        move_block_of_rows(els_rows, els_rows_block, walk_back(row_index - 1));
+        const row_uid = e.currentTarget.parentElement.parentElement.dataset.uid;
+        this.#move(row_uid, -1);
     }
 
     #move_down_clicked(e) {
-
+        const row_uid = e.currentTarget.parentElement.parentElement.dataset.uid;
+        this.#move(row_uid, 1);
     }
 
-    #find_rows_block(el_row) {
-        /*
-         * Pass a ref to a row.
-         * Loop down the table while the depth of the next row is deeper than the selected row.
-         * Return an array of contigus rows that are children of the selected row.
-         
-        const depth = el_row.dataset.depth;
-        const els_rows = this.#el_table.querySelectorAll("tbody tr");
-        const row_block = [el_row];
-        let current_row = this.#find_my_index(el_row) + 1;
-        if (current_row > els_rows.length - 1) current_row = els_rows.length - 1;
-        if (parseInt(els_rows[current_row].dataset.depth) > depth) {
-            while(current_row < els_rows.length && parseInt(els_rows[current_row].dataset.depth) > depth) {
-                row_block.push(els_rows[current_row]);
-                current_row += 1;
+    #move(row_uid, move_by) {
+        this.#hide_tool_popups();
+        const found_in = this.#find_by_uid(row_uid);
+        if (move_by < 0 && found_in[1] <= 0) return;
+        if (move_by > 0 && found_in[1] >= found_in[0].length - 1) return;
+        found_in[0].move(found_in[1], found_in[1] + move_by);
+        this.#build_table();
+        this.#cb_changed({"action": "moves"});
+    }
+
+    #find_by_uid(uid) {
+        const scan = (d) => {
+            for (let i = 0; i < d.length; i++) {
+                if (d[i].uid === uid) {
+                    return [d, i];
+                }
+                if (d[i].hasOwnProperty("children")) {
+                    const res = scan(d[i].children);
+                    if (res !== false) return res;
+                }
             }
+            return false;
         }
-        return row_block;
+        return scan(this.#data);
     }
-
-    #find_my_index(node) {
-        return Array.prototype.indexOf.call(node.parentNode.childNodes, node);
-    }
-    */
 }
