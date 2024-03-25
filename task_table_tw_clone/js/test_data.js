@@ -1,14 +1,20 @@
+const build_text_span = (t) => {
+    const el_span = document.createElement('span');
+    el_span.innerText = t;
+    return el_span;
+}
+
 const test_data = [
     {
         "uid": "a0e9fdcb-8473-4d7d-b37a-b47169d27d1d",
         "name": "Row 1",
         "cells": [
-            document.createElement('span').innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            document.createElement('span').innerText = "In non hendrerit erat. Fusce facilisis tellus eget nisi efficitur pellentesque.",
-            document.createElement('span').innerText = "Integer ac posuere sem.",
-            document.createElement('span').innerText = "Nullam magna nunc, dignissim ut auctor ac, tristique non lectus.",
-            document.createElement('span').innerText = "Vestibulum fringilla ante facilisis urna aliquam, eget pharetra sapien commodo.",
-            document.createElement('span').innerText = "Morbi nec porttitor turpis, sit amet dapibus arcu. Cras eget justo eu dui vestibulum placerat. Duis faucibus arcu sit amet volutpat tempus."
+            build_text_span("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+            build_text_span("In non hendrerit erat. Fusce facilisis tellus eget nisi efficitur pellentesque."),
+            build_text_span("Integer ac posuere sem."),
+            build_text_span("Nullam magna nunc, dignissim ut auctor ac, tristique non lectus."),
+            build_text_span("Vestibulum fringilla ante facilisis urna aliquam, eget pharetra sapien commodo."),
+            build_text_span("Morbi nec porttitor turpis, sit amet dapibus arcu. Cras eget justo eu dui vestibulum placerat. Duis faucibus arcu sit amet volutpat tempus.")
         ]
     },
     {

@@ -22,6 +22,10 @@ class TaskTable {
         this.#build_table();
     }
 
+    reload() {
+        this.#build_table();
+    }
+
     #build_table() {
         const el_tbody = this.#el_table.querySelector('tbody');
         const buld_rows = (d, depth, parent_uid) => {
@@ -109,6 +113,7 @@ class TaskTable {
             el_icon.classList.add("ri-arrow-down-wide-line");
         }
         this.#update_expanded_sections();
+        this.#cb_changed({"action": "expanders"});
     }
 
     #tool_link_clicked(e) {
@@ -173,7 +178,7 @@ class TaskTable {
         if (move_by > 0 && found_in[1] >= found_in[0].length - 1) return;
         found_in[0].move(found_in[1], found_in[1] + move_by);
         this.#build_table();
-        this.#cb_changed({"action": "moves"});
+        this.#cb_changed({"action": "move"});
     }
 
     #find_by_uid(uid) {
