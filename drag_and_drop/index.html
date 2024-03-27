@@ -149,8 +149,9 @@
         <script>
             setup_table(
                 document.getElementById('advanced-table'),
-                function(el_moved) {
-                    console.log(el_moved)
+                function(el_moved, index_from, index_to) {
+                    console.log("Moved from " + index_from + " to " + index_to);
+                    console.log(el_moved);
                 }
             );
         </script>

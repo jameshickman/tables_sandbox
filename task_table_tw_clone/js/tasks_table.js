@@ -97,7 +97,7 @@ class TaskTable {
 
     #chevron_clicked(e) {
         const row_uid = e.currentTarget.parentElement.parentElement.dataset.uid;
-        const found_in = this.#find_by_uid(row_uid);
+        const found_in = this.find_by_uid(row_uid);
         const el_cell = e.currentTarget.parentElement;
         const el_icon = el_cell.querySelector(".__bind_icon");
         el_icon.classList.remove("ri-arrow-down-wide-line");
@@ -173,7 +173,7 @@ class TaskTable {
 
     #move(row_uid, move_by) {
         this.#hide_tool_popups();
-        const found_in = this.#find_by_uid(row_uid);
+        const found_in = this.find_by_uid(row_uid);
         if (move_by < 0 && found_in[1] <= 0) return;
         if (move_by > 0 && found_in[1] >= found_in[0].length - 1) return;
         found_in[0].move(found_in[1], found_in[1] + move_by);
@@ -181,7 +181,7 @@ class TaskTable {
         this.#cb_changed({"action": "move"});
     }
 
-    #find_by_uid(uid) {
+    find_by_uid(uid) {
         const scan = (d) => {
             for (let i = 0; i < d.length; i++) {
                 if (d[i].uid === uid) {
