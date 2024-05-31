@@ -7,9 +7,18 @@ Array.prototype.move = function(from,to){
 class TaskTable {
     #data;
     #cb_changed = () => {};
+    #cb_edit = () => {};
+    #cb_add = () => {};
+    #cb_add_child = () => {};
+    #cb_delete = () => {};
     #el_table = null;
     #el_control_template = null;
 
+    /**
+     * Constructer
+     * @param {HTMLElement}} el The table
+     * @param {CallableFunction} cb_change Called on changing the row ordering
+     */
     constructor(el, cb_change) {
         this.#el_table = el;
         this.#el_control_template = el.querySelector('template').content;
@@ -17,13 +26,61 @@ class TaskTable {
         document.addEventListener('click', this.#hide_tool_popups.bind(this));
     }
 
+    /**
+     * Set the data in the table
+     * @param {Array<Object>} d See examples
+     */
     set_data(d) {
         this.#data = d;
         this.#build_table();
+        return this;
     }
 
+    /**
+     * Refresh the desplay from the data.
+     * Call after altering the data to display it.
+     */
     reload() {
         this.#build_table();
+        return this;
+    }
+
+    /**
+     * Set the tool action callbacks
+     * 
+     * @param {CallableFunction} cb_edit 
+     * @param {CallableFunction} cb_add 
+     * @param {CallableFunction} cb_add_child 
+     * @param {CallableFunction} cb_delete 
+     */
+    set_callbacks(cb_edit, cb_add, cb_add_child, cb_delete) {
+        this.#cb_edit = cb_edit;
+        this.#cb_add = cb_add;
+        this.#cb_add_child = cb_add_child;
+        this.#cb_delete = cb_delete;
+        return this;
+    }
+
+    /**
+     * Find the data object by row UUID
+     * 
+     * @param {string} uid 
+     * @returns Refrance to the object that contans the row data
+     */
+    find_by_uid(uid) {
+        const scan = (d) => {
+            for (let i = 0; i < d.length; i++) {
+                if (d[i].uid === uid) {
+                    return [d, i];
+                }
+                if (d[i].hasOwnProperty("children")) {
+                    const res = scan(d[i].children);
+                    if (res !== false) return res;
+                }
+            }
+            return false;
+        }
+        return scan(this.#data);
     }
 
     #build_table() {
@@ -48,6 +105,18 @@ class TaskTable {
                 // Bind tool actions
                 el_tools.querySelector(".__bind_move_up").addEventListener('click', this.#move_up_clicked.bind(this));
                 el_tools.querySelector(".__bind_move_down").addEventListener('click', this.#move_down_clicked.bind(this));
+                el_tools.querySelector(".__bind_edit").addEventListener('click', (e) => {
+                    this.#cb_edit(e.parentElement.parentElement.dataset['uid']);
+                });
+                el_tools.querySelector(".__bind_add_row").addEventListener('click', (e) => {
+                    this.#cb_add(e.parentElement.parentElement.dataset['uid']);
+                });
+                el_tools.querySelector(".__bind_child_row").addEventListener('click', (e) => {
+                    this.#cb_add_child(e.parentElement.parentElement.dataset['uid']);
+                });
+                el_tools.querySelector(".__bind_delete").addEventListener('click', (e) => {
+                    this.#cb_delete(e.parentElement.parentElement.dataset['uid']);
+                });
                 el_control_cell.appendChild(el_tools);
                 el_control_cell.appendChild(el_name);
                 if (row_data.hasOwnProperty("children")) {
@@ -179,21 +248,5 @@ class TaskTable {
         found_in[0].move(found_in[1], found_in[1] + move_by);
         this.#build_table();
         this.#cb_changed({"action": "move"});
-    }
-
-    find_by_uid(uid) {
-        const scan = (d) => {
-            for (let i = 0; i < d.length; i++) {
-                if (d[i].uid === uid) {
-                    return [d, i];
-                }
-                if (d[i].hasOwnProperty("children")) {
-                    const res = scan(d[i].children);
-                    if (res !== false) return res;
-                }
-            }
-            return false;
-        }
-        return scan(this.#data);
     }
 }
