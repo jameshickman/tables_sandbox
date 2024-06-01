@@ -65,7 +65,7 @@ class TaskTable {
      * Find the data object by row UUID
      * 
      * @param {string} uid 
-     * @returns Refrance to the object that contans the row data
+     * @returns Array that contans the row data, index in the array
      */
     find_by_uid(uid) {
         const scan = (d) => {
