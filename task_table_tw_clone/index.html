@@ -34,7 +34,14 @@
             const tbl = new TaskTable(
                 document.getElementById("task-list"),
                 (d) => {console.log(d)}
-            ).set_data(test_data);
+            )
+            .set_data(test_data)
+            .set_callbacks(
+                (uid) => console.log("Edit: " + uid),
+                (uid) => console.log("Add: " + uid),
+                (uid) => console.log("Add child to: " + uid),
+                (uid) => console.log("Delete: " + uid)
+            );
         </script>
     </body>
 </html>
