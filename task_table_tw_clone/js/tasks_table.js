@@ -250,3 +250,5 @@ class TaskTable {
         this.#cb_changed({"action": "move"});
     }
 }
+
+export {TaskTable};
