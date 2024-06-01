@@ -106,16 +106,16 @@ class TaskTable {
                 el_tools.querySelector(".__bind_move_up").addEventListener('click', this.#move_up_clicked.bind(this));
                 el_tools.querySelector(".__bind_move_down").addEventListener('click', this.#move_down_clicked.bind(this));
                 el_tools.querySelector(".__bind_edit").addEventListener('click', (e) => {
-                    this.#cb_edit(e.parentElement.parentElement.dataset['uid']);
+                    this.#cb_edit(e.currentTarget.parentElement.parentElement.dataset['uid']);
                 });
                 el_tools.querySelector(".__bind_add_row").addEventListener('click', (e) => {
-                    this.#cb_add(e.parentElement.parentElement.dataset['uid']);
+                    this.#cb_add(e.currentTarget.parentElement.parentElement.dataset['uid']);
                 });
                 el_tools.querySelector(".__bind_child_row").addEventListener('click', (e) => {
-                    this.#cb_add_child(e.parentElement.parentElement.dataset['uid']);
+                    this.#cb_add_child(e.currentTarget.parentElement.parentElement.dataset['uid']);
                 });
                 el_tools.querySelector(".__bind_delete").addEventListener('click', (e) => {
-                    this.#cb_delete(e.parentElement.parentElement.dataset['uid']);
+                    this.#cb_delete(e.currentTarget.parentElement.parentElement.dataset['uid']);
                 });
                 el_control_cell.appendChild(el_tools);
                 el_control_cell.appendChild(el_name);
