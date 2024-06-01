@@ -16,7 +16,7 @@ class TaskTable {
 
     /**
      * Constructer
-     * @param {HTMLElement}} el The table
+     * @param {HTMLElement} el The table
      * @param {CallableFunction} cb_change Called on changing the row ordering
      */
     constructor(el, cb_change) {
